@@ -17,7 +17,14 @@
     <div id="container">
         <h1>YouTube Subscribers</h1>
         <h2 id="subs"></h2>
+
+        <h1>YouTube Views</h1>
+        <h2 id="views"></h2>
+
+        <h1>YouTube Videos</h1>
+        <h2 id="videos"></h2>
     </div>
+
 
     <script>
         let subscribers = {};
@@ -35,6 +42,9 @@
             console.log(subscribers);
 
             document.getElementById("subs").innerText = subscribers.statistics.subscriberCount;
+            document.getElementById("views").innerText = subscribers.statistics.viewCount;
+            document.getElementById("videos").innerText = subscribers.statistics.videoCount;
+
         };
     </script>
 
