@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>YouTube API | Subscriber Count</title>
+</head>
+<body>
+    
+    <div id="container">
+        <h1>YouTube Subscribers</h1>
+        <h2 id="subs"></h2>
+    </div>
+
+    <script>
+        let subscribers = {};
+        const websocket = new WebSocket("ws://localhost:8080/stats")
+
+        websocket.onopen = function (event) {
+            console.log("Successfully connected to a websocket endpoint")
+        };
+        websocket.onerror = function (error) {
+            console.log("Error connecting to websocket server")
+            console.log(err)
+        };
+        websocket.onmessage = function (event) {
+            subscribers = JSON.parse(event.data);
+            console.log(subscribers);
+
+            document.getElementById("subs").innerText = subscribers.statistics.subscriberCount;
+        };
+    </script>
+
+</body>
+</html>
