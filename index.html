@@ -38,7 +38,10 @@
             console.log(err)
         };
         websocket.onmessage = function (event) {
+            // parse the event data sent from our websocket server
             subscribers = JSON.parse(event.data);
+            // populate our `sub` element with the total subscriber counter for our
+            // channel
             console.log(subscribers);
 
             document.getElementById("subs").innerText = subscribers.statistics.subscriberCount;
